@@ -1,0 +1,8 @@
+{
+  "name": "ACROOOSVERSE",
+  "description": "An editorial space imagery archive and observatory field journal indexing NASA deep space, planetary, lunar, and orbital imagery.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

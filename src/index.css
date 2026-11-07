@@ -1,0 +1,154 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-display: "Cinzel", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: "Space Mono", monospace;
+  --color-nebula-deep: #050010;
+  --color-nebula-purple: #120024;
+  --color-cyan-glow: #00f0ff;
+  --color-orange-solar: #ff5d00;
+  --color-magenta-neon: #ff00a0;
+  --color-cyan-muted: #8ae3f5;
+  --color-meta-slate: #7ea0b8;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #050010;
+  color: #f4f1eb;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Cosmic Nebular Atmosphere: Deep layered radial gradients in #120024 and #050010 */
+.cosmic-bg {
+  background-color: #050010;
+  background-image: 
+    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(18, 0, 36, 0.95), transparent 80%),
+    radial-gradient(ellipse 70% 50% at 85% 30%, rgba(255, 0, 160, 0.08), transparent 60%),
+    radial-gradient(ellipse 75% 55% at 15% 65%, rgba(0, 240, 255, 0.07), transparent 65%),
+    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(255, 93, 0, 0.06), transparent 70%),
+    linear-gradient(180deg, #050010 0%, #120024 45%, #050010 100%);
+  background-attachment: fixed;
+}
+
+/* Subtle Animated Starfield Layer (pure CSS, restrained for text legibility) */
+.starfield-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: 
+    radial-gradient(1px 1px at 25px 35px, rgba(255, 255, 255, 0.65), transparent),
+    radial-gradient(1.5px 1.5px at 85px 120px, rgba(0, 240, 255, 0.7), transparent),
+    radial-gradient(1px 1px at 160px 70px, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(1.5px 1.5px at 240px 190px, rgba(255, 0, 160, 0.6), transparent),
+    radial-gradient(1px 1px at 320px 140px, rgba(255, 255, 255, 0.55), transparent),
+    radial-gradient(1.5px 1.5px at 410px 280px, rgba(0, 240, 255, 0.65), transparent),
+    radial-gradient(1px 1px at 530px 220px, rgba(255, 93, 0, 0.6), transparent),
+    radial-gradient(1.5px 1.5px at 640px 90px, rgba(255, 255, 255, 0.7), transparent);
+  background-repeat: repeat;
+  background-size: 700px 350px;
+  opacity: 0.38;
+  animation: star-drift 120s linear infinite;
+}
+
+@keyframes star-drift {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 700px 350px;
+  }
+}
+
+/* Vibrant Glass Card System */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.25rem; /* 20px > 16px */
+  transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.glass-panel:hover {
+  border-color: rgba(0, 240, 255, 0.35);
+  box-shadow: 
+    0 0 35px -5px rgba(0, 240, 255, 0.22),
+    0 0 15px -3px rgba(255, 0, 160, 0.18);
+  transform: translateY(-2px);
+}
+
+/* Orange/Solar Accent Hover Variation for Mission Cards */
+.glass-panel-solar:hover {
+  border-color: rgba(255, 93, 0, 0.4);
+  box-shadow: 
+    0 0 35px -5px rgba(255, 93, 0, 0.25),
+    0 0 15px -3px rgba(255, 0, 160, 0.15);
+  transform: translateY(-2px);
+}
+
+/* Neon Magenta Hover Variation for Field Notes */
+.glass-panel-magenta:hover {
+  border-color: rgba(255, 0, 160, 0.4);
+  box-shadow: 
+    0 0 35px -5px rgba(255, 0, 160, 0.25),
+    0 0 15px -3px rgba(0, 240, 255, 0.15);
+  transform: translateY(-2px);
+}
+
+/* App page scale-down when modal is open */
+.page-zoom-scaled {
+  transform: scale(0.985);
+  filter: brightness(0.7) blur(2px);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease;
+}
+
+.page-zoom-normal {
+  transform: scale(1);
+  filter: none;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050010;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 240, 255, 0.2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 240, 255, 0.5);
+  box-shadow: 0 0 10px #00f0ff;
+}
+
+/* Reduced Motion Compliance */
+@media (prefers-reduced-motion: reduce) {
+  .starfield-layer {
+    animation: none !important;
+  }
+  .glass-panel,
+  .glass-panel:hover,
+  .page-zoom-scaled,
+  .page-zoom-normal {
+    transition: none !important;
+    transform: none !important;
+  }
+}
